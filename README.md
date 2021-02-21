@@ -6,3 +6,5 @@
 # Installation
 
 Run `npm install` to start the installation.
+
+Add your token to `slappey.json` to let the bot login
