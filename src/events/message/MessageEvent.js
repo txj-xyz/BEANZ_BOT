@@ -15,6 +15,8 @@ module.exports = class MessageEvent extends BaseEvent {
       const command = client.commands.get(cmdName);
       if (command) {
         command.run(client, message, cmdArgs);
+      } else {
+        message.channel.send('**That is not a valid command, please type `b!bean` to get beans**')
       }
     }
   }
