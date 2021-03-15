@@ -15,6 +15,8 @@ const client = new Client();
   await registerEvents(client, '../events');
   await client.login(config.token);
 
+  client.user.setPresence({ activity: { name: 'for b!bean or b!invite', type: 'LISTENING' }
+});
   // Get 500 beans on bot startup
   const google = new Scraper({
     puppeteer: {
@@ -23,13 +25,22 @@ const client = new Client();
     },
   });
   // get beans from google here
-  const results = await google.scrape('baked beans', 500);
+  const beanresults = await google.scrape('baked beans', 2000);
+  // get beans memes from google as well.
+  //const beanMemes = await google.scrape('baked bean memes', 500);
   // push beans to client.beans so we can call it in the bean co1mmand lat
   let beanArray = client.beans
   const checkForBeansLoaded = setInterval(() => {
     beanArray.length != 0 ? console.log("[INFO] BEANS LOADED") : null
     clearInterval(checkForBeansLoaded)
   }, 500);
-  results.forEach(r => beanArray.push(r.url));
+  beanresults.forEach(r => {
+    console.log('[INFO] Pushing bean:', r.url)
+    beanArray.push(r.url)
+  });
+  //beanMemes.forEach(r => {
+  //  console.log('[INFO] Pushing bean meme:', r.url)
+  //  beanArray.push(r.url)
+  //});
 })();
 
