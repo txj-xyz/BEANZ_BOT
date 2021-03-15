@@ -1,6 +1,6 @@
 const BaseCommand = require('../utils/structures/BaseCommand');
 
-module.exports = class TestCommand extends BaseCommand {
+module.exports = class BeanCommand extends BaseCommand {
   constructor() {
     super('bean', 'Post Beanz photos', []);
   }
